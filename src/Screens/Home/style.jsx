@@ -42,5 +42,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     marginTop: 3,
+    fontWeight: 200,
   }
 });
