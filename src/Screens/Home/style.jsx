@@ -23,18 +23,24 @@ export const styles = StyleSheet.create({
   stories: {
     width: '100%',
     paddingLeft: 10,
-    height: 115,
     alignContent: 'center',
   },
   storiesCard: {
-    alignContent: 'center',
-    borderWidth: 2,
-    borderColor: '#f7855a',
-    borderRadius: 50,
+    marginRight: 14,
+    textAlign: 'center'
   },
   storiesCardImage: {
+    borderWidth: 2,
+    padding: 2,
+    borderColor: '#f7855a',
     width: 64,
     height: 64,
     borderRadius: '50%'
+  },
+  storiesCardNome: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 12,
+    marginTop: 3,
   }
 });
