@@ -39,6 +39,14 @@ Extra: Salvar a informação do input no dispositivo ao clicar no botão!
 - [Node](https://nodejs.org/en) <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" width="40" height="40"/>
 
 - [NPM](https://www.npmjs.com/) <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" width="40" height="40"/>
-          
-## Licença 
-- [MIT LICENSE](https://opensource.org/license/mit/)
+
+## Autora
+
+<a href="https://www.linkedin.com/in/juliafclima/">
+ <img style="border-radius: 100%;" src="https://media.licdn.com/dms/image/C4D03AQF0dd3FxSn28Q/profile-displayphoto-shrink_800_800/0/1660857281772?e=1701907200&v=beta&t=VEiNZlpWiycGdsak5RhPgD9OTZuXjPiRf5q_VPEtvKc" width="100px;" alt="Minha foto de perfil"/>
+ <br></a>
+ 
+[![Linkedin Badge](https://img.shields.io/badge/-Júliafclima-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/juliafclima/)](https://www.linkedin.com/in/juliafclima/) 
+
+## Licença
+Esse repositório está licenciado pelo MIT LICENSE(https://opensource.org/license/mit/). Para mais informações detalhadas, leia o arquivo LICENSE contido nesse repositório.
