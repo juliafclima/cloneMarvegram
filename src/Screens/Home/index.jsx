@@ -1,32 +1,34 @@
-import { FlatList, Image, ScrollView, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
 
-import { AntDesign, Feather } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
+import { useState } from "react";
+
+import { AntDesign, Feather, FontAwesome } from '@expo/vector-icons';
 
 import { styles } from '../Home/style';
 
 import storie1 from '../../Assets/baby-groot.png';
 import storie2 from '../../Assets/capita-marvel.png';
 import storie3 from '../../Assets/cosmo.png';
-import storie4 from '../../Assets/deadpool.png';
 import storie5 from '../../Assets/doutor-estranho.png';
-import storie6 from '../../Assets/feiticeira-escarlate.png';
 import storie7 from '../../Assets/homem-aranha.png';
 import storie8 from '../../Assets/homem-de-ferro.png';
 import storie9 from '../../Assets/hulk.png';
 import storie10 from '../../Assets/miles-morales.png';
 import storie11 from '../../Assets/mulher-hulk.png';
 import storie13 from '../../Assets/rocket.png';
-import storie14 from '../../Assets/stan-lee.png';
 import storie15 from '../../Assets/thor.png';
 import storie16 from '../../Assets/viuva-negra.png';
 
 const DATA = [
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie1,
-    nome: 'Groot',
-  },
   {
     id: Math.random().toString(36).substring(2, 27),
     photoURL: storie2,
@@ -39,18 +41,8 @@ const DATA = [
   },
   {
     id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie4,
-    nome: 'Deadpool',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
     photoURL: storie5,
     nome: 'Dr Estranho',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie6,
-    nome: 'Wanda',
   },
   {
     id: Math.random().toString(36).substring(2, 27),
@@ -69,6 +61,11 @@ const DATA = [
   },
   {
     id: Math.random().toString(36).substring(2, 27),
+    photoURL: storie1,
+    nome: 'Groot',
+  },
+  {
+    id: Math.random().toString(36).substring(2, 27),
     photoURL: storie10,
     nome: 'Miles',
   },
@@ -84,11 +81,6 @@ const DATA = [
   },
   {
     id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie14,
-    nome: 'Stan Lee',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
     photoURL: storie15,
     nome: 'Thor',
   },
@@ -100,8 +92,20 @@ const DATA = [
 ];
 
 export function Home() {
+
+  const [comment, setComment] = useState('');
+
+  const handleCommentChange = (text) => {
+    setComment(text);
+  };
+
+  const handlePostComment = () => {
+    console.log('Comentário postado:', comment);
+    setComment('');
+  };
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={{ color: 'white' }}>MARVELGRAM</Text>
         <View style={styles.headerOptions}>
@@ -109,7 +113,9 @@ export function Home() {
           <Feather name="message-circle" size={24} color="white" />
         </View>
       </View>
-      <ScrollView style={{ width: '100%' }}>
+
+      <ScrollView showsVerticalScrollIndicator={false}
+        style={{ width: "100%" }}>
         <View style={styles.stories}>
           <FlatList
             horizontal={true}
@@ -159,14 +165,31 @@ export function Home() {
             </View>
             <Feather name="bookmark" size={24} color="white" />
           </View>
-          <View style={{ gap: 8, marginTop: 12, paddingLeft: 6 }}>
+          <View style={{ gap: 8, marginTop: 12, paddingLeft: 5 }}>
             <View style={{ flexDirection: 'row', gap: 6 }}>
               <Text style={{ color: '#fff', fontWeight: 'bold' }}>Baby Groot</Text>
               <Text style={{ color: '#fff' }}>I'M GROOT!</Text>
             </View>
-            <Text style={{ color: '#fff' }}>Ver tradução</Text>
-            <Text style={{ color: '#fff' }}>Ver todos os 3 comentários</Text>
-            <Text style={{ color: '#fff' }}>Adicione um comentário...</Text>
+            <Text style={{ color: '#fff', fontWeight: "700", fontSize: 11 }}>Ver tradução</Text>
+            <Text style={{ color: '#fff', fontWeight: '300' }}>Ver todos os 3 comentários</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <TextInput
+                style={{
+                  flex: 1,
+                  borderBottomWidth: 1,
+                  borderBottomColor: '#ccc',
+                  paddingBottom: 8,
+                  color: 'white',
+                  underlineColorAndroid: 'transparent',
+                }}
+                placeholder="Adicione um comentário..."
+                value={comment}
+                onChangeText={handleCommentChange}
+              />
+              <TouchableOpacity onPress={handlePostComment}>
+                <Text style={{ color: 'blue', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#ccc', paddingBottom: 6, marginLeft: '-45%' }}><FontAwesome name="smile-o" size={20} color="white" /></Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
 
@@ -204,17 +227,34 @@ export function Home() {
             </View>
             <Feather name="bookmark" size={24} color="white" />
           </View>
-          <View style={{ gap: 8, marginTop: 12, paddingLeft: 6 }}>
-            <View style={{flexDirection: 'row', gap: 6}}>
+          <View style={{ gap: 8, marginTop: 12, paddingLeft: 5 }}>
+            <View style={{ flexDirection: 'row', gap: 6 }}>
               <Text style={{ color: '#fff', fontWeight: 'bold' }}>Spider Man</Text>
-              <Text style={{ color: '#fff' }}>Mais que miranhas, manos!</Text>
+              <Text style={{ color: '#fff' }}>Miranhas!</Text>
             </View>
-            <Text style={{ color: '#fff' }}>Ver tradução</Text>
-            <Text style={{ color: '#fff' }}>Ver todos os 6 comentários</Text>
-            <Text style={{ color: '#fff' }}>Adicione um comentário...</Text>
+            <Text style={{ color: '#fff', fontWeight: "700", fontSize: 11 }}>Ver tradução</Text>
+            <Text style={{ color: '#fff', fontWeight: '300' }}>Ver todos os 5 comentários</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <TextInput
+                style={{
+                  flex: 1,
+                  borderBottomWidth: 1,
+                  borderBottomColor: '#ccc',
+                  paddingBottom: 8,
+                  color: 'white',
+                  underlineColorAndroid: 'transparent', 
+                }}
+                placeholder="Adicione um comentário..."
+                value={comment}
+                onChangeText={handleCommentChange}
+              />
+              <TouchableOpacity onPress={handlePostComment}>
+                <Text style={{ color: 'blue', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#ccc', paddingBottom: 6, marginLeft: '-45%' }}><FontAwesome name="smile-o" size={20} color="white" /></Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }

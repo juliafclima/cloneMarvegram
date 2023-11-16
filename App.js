@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import { Home } from "./src/Screens/Home";
+import { Routes } from "./src/Routes";
 
 export default function App() {
   return (
     <>
-      <Home />
+      <Routes />
       <StatusBar style="light" />
     </>
   );
