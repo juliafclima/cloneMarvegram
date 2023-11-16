@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingVertical: 10,
     alignContent: 'center',
+    marginBottom: -15,
   },
   storiesCard: {
     marginRight: 14,
@@ -38,7 +39,7 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
   },
   storiesCardNome: {
-    color: 'white',
+    color: '#fff',
     textAlign: 'center',
     fontSize: 12,
     marginTop: 3,

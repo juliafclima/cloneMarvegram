@@ -121,6 +121,7 @@ export function Home() {
             horizontal={true}
             data={DATA}
             keyExtractor={(item) => item.id}
+            showsHorizontalScrollIndicator={false} 
             renderItem={({ item }) => (
               <View style={styles.storiesCard} key={item.id}>
                 <Image
