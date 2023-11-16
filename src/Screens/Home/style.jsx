@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 10,
-    marginTop: 10,
+    marginVertical: 15,
     width: '95%',
     justifyContent: 'space-between',
     alignItems: 'center',
