@@ -1,9 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import { Home } from '../Screens/Home';
 import { NavigationContainer } from "@react-navigation/native";
 
-import { MaterialIcons, Entypo, Octicons, Ionicons, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons, Entypo, Ionicons, AntDesign } from '@expo/vector-icons';
+import { Home } from '../Screens/Home';
+import { Explore } from "../Screens/Explore";
+import { NovaPublicacao } from "../Screens/NovaPublicacao";
+import { Perfil } from "../Screens/Perfil";
+import { Mensagem } from "../Screens/Mensagem";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,32 +24,32 @@ export const Routes = () => {
         <Tab.Screen options={{
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="house" size={30} color="white" />
-            )
+          )
         }} name="Home" component={Home} />
 
         <Tab.Screen options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="magnifying-glass" size={24} color="white" />
           )
-        }} name="Home1" component={Home} />
+        }} name="Explore" component={Explore} />
 
         <Tab.Screen options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name="pluscircleo" size={30} color="white" />
           )
-        }} name="Home3" component={Home} />
+        }} name="NovaPublicacao" component={NovaPublicacao} />
 
         <Tab.Screen options={{
           tabBarIcon: ({ color }) => (
-            <Octicons name="video" size={30} color="white" />
+            <AntDesign name="message1" size={30} color="white" />
           )
-        }} name="Home2" component={Home} />
+        }} name="Mensagem" component={Mensagem} />
 
         <Tab.Screen options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="md-person-circle-outline" size={30} color="white" />
           )
-        }} name="Home4" component={Home} />
+        }} name="Perfil" component={Perfil} />
       </Tab.Navigator>
     </NavigationContainer>
 
