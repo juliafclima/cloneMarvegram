@@ -91,7 +91,7 @@ const DATA = [
   },
 ];
 
-export function Home() {
+export function Home({ navigation }) {
 
   const [comment, setComment] = useState('');
 
@@ -109,8 +109,12 @@ export function Home() {
       <View style={styles.header}>
         <Text style={{ color: 'white' }}>MARVELGRAM</Text>
         <View style={styles.headerOptions}>
-          <AntDesign name="hearto" size={24} color="white" />
-          <Feather name="message-circle" size={24} color="white" />
+          <TouchableOpacity onPress={() => navigation.navigate("Notificacao")}>
+            <AntDesign name="hearto" size={24} color="white" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Mensagem")}>
+            <Feather name="message-circle" size={24} color="white" />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -121,7 +125,7 @@ export function Home() {
             horizontal={true}
             data={DATA}
             keyExtractor={(item) => item.id}
-            showsHorizontalScrollIndicator={false} 
+            showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
               <View style={styles.storiesCard} key={item.id}>
                 <Image
@@ -243,7 +247,7 @@ export function Home() {
                   borderBottomColor: '#ccc',
                   paddingBottom: 8,
                   color: 'white',
-                  underlineColorAndroid: 'transparent', 
+                  underlineColorAndroid: 'transparent',
                 }}
                 placeholder="Adicione um comentário..."
                 value={comment}

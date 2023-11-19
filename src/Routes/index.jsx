@@ -2,11 +2,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { MaterialIcons, Entypo, Ionicons, AntDesign } from '@expo/vector-icons';
+
 import { Home } from '../Screens/Home';
 import { Explore } from "../Screens/Explore";
 import { NovaPublicacao } from "../Screens/NovaPublicacao";
 import { Perfil } from "../Screens/Perfil";
 import { Mensagem } from "../Screens/Mensagem";
+import { Notificacao } from "../Screens/Notificacao";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +23,7 @@ export const Routes = () => {
           },
           tabBarShowLabel: false,
         }}>
+
         <Tab.Screen options={{
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="house" size={30} color="white" />
@@ -47,11 +50,16 @@ export const Routes = () => {
 
         <Tab.Screen options={{
           tabBarIcon: ({ color }) => (
+            <AntDesign name="hearto" size={24} color="white" />
+          )
+        }} name="Notificacao" component={Notificacao} />
+
+        <Tab.Screen options={{
+          tabBarIcon: ({ color }) => (
             <Ionicons name="md-person-circle-outline" size={30} color="white" />
           )
         }} name="Perfil" component={Perfil} />
       </Tab.Navigator>
     </NavigationContainer>
-
   );
 };
