@@ -10,45 +10,45 @@ export const Manutencao = () => {
     navigation.navigate('Home');
   };
 
-  const handleNavigateToMensagem = () => {
+  const handleNavegarParaMensagem = () => {
     navigation.navigate('Mensagem');
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>MARVELGRAM</Text>
+    <View style={estilos.container}>
+      <View style={estilos.cabecalho}>
+        <Text style={estilos.textoCabecalho}>MARVELGRAM</Text>
 
-        <View style={styles.headerOptions}>
+        <View style={estilos.opcoesCabecalho}>
           <TouchableOpacity>
             <AntDesign name="hearto" size={24} color="white" />
           </TouchableOpacity>
 
           <TouchableOpacity>
-            <Feather name="message-circle" size={24} color="white" onPress={handleNavigateToMensagem} />
+            <Feather name="message-circle" size={24} color="white" onPress={handleNavegarParaMensagem} />
           </TouchableOpacity>
         </View>
       </View>
 
-      <View style={styles.contentContainer}>
-        <Text style={styles.text}>Desculpe, estamos em manutenção.</Text>
-        <Text style={styles.text}>Volte em breve!</Text>
+      <View style={estilos.containerConteudo}>
+        <Text style={estilos.texto}>Desculpe, estamos em manutenção.</Text>
+        <Text style={estilos.texto}>Volte em breve!</Text>
       </View>
 
-      <TouchableOpacity onPress={handleVoltarParaHome} style={styles.botaoVoltar}>
-        <Text style={styles.textBotao}>Voltar para Home</Text>
+      <TouchableOpacity onPress={handleVoltarParaHome} style={estilos.botaoVoltar}>
+        <Text style={estilos.textoBotao}>Voltar para Home</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const estilos = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#000',
   },
-  header: {
+  cabecalho: {
     paddingHorizontal: 10,
     marginVertical: 15,
     width: '95%',
@@ -56,20 +56,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  headerText: {
+  textoCabecalho: {
     color: 'white',
   },
-  headerOptions: {
+  opcoesCabecalho: {
     flexDirection: 'row',
     gap: 10,
     alignItems: 'center',
   },
-  contentContainer: {
+  containerConteudo: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
+  texto: {
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 10,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
-  textBotao: {
+  textoBotao: {
     color: 'white',
     fontSize: 16,
   },

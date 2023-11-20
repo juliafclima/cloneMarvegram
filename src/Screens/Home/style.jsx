@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  headerOptions: {
+  headerOpcoes: {
     alignItems: 'center',
     flexDirection: 'row',
     gap: 10,
@@ -56,24 +56,24 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 20,
   },
-  contentHeaderPoints: {
+  contentHeaderPontos: {
     flexDirection: 'row',
     gap: 3,
   },
-  contentHeaderLeft: {
+  contentHeaderEsquerda: {
     height: "100%",
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
   },
-  contentHeaderLeftImage: {
+  contentHeaderEsquerdaImagem: {
     width: 30,
     height: 30,
     borderRadius: 50,
     borderWidth: 2,
     borderColor: "#fff",
   },
-  contentHeaderLeftText: {
+  contentHeaderEsquerdaTexto: {
     color: "#fff",
   },
   contentImage: {
@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginTop: 4,
   },
-  contentFooterLeft: {
+  contentFooterEsquerda: {
     alignItems: 'center',
     flexDirection: 'row',
     gap: 10,

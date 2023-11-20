@@ -28,110 +28,109 @@ import storie17 from '../../Assets/avante.webp';
 
 import { useNavigation } from '@react-navigation/native';
 
-const storieData = [
-  { id: '1', photoURL: storie2, nome: 'Cap Marvel' },
-  { id: '2', photoURL: storie3, nome: 'Cosmo' },
-  { id: '3', photoURL: storie5, nome: 'Dr Estranho' },
-  { id: '4', photoURL: storie7, nome: 'Miranha' },
-  { id: '5', photoURL: storie8, nome: 'Tony' },
-  { id: '6', photoURL: storie9, nome: 'Hulk' },
-  { id: '7', photoURL: storie1, nome: 'Groot' },
-  { id: '8', photoURL: storie10, nome: 'Miles' },
-  { id: '9', photoURL: storie11, nome: 'She Hulk' },
-  { id: '10', photoURL: storie13, nome: 'Rocket' },
-  { id: '11', photoURL: storie15, nome: 'Thor' },
-  { id: '12', photoURL: storie16, nome: 'Viúva Negra' },
+const dadosHistorias = [
+  { id: '1', urlFoto: storie2, nome: 'Cap Marvel' },
+  { id: '2', urlFoto: storie3, nome: 'Cosmo' },
+  { id: '3', urlFoto: storie5, nome: 'Dr Estranho' },
+  { id: '4', urlFoto: storie7, nome: 'Homem-Aranha' },
+  { id: '5', urlFoto: storie8, nome: 'Tony' },
+  { id: '6', urlFoto: storie9, nome: 'Hulk' },
+  { id: '7', urlFoto: storie1, nome: 'Groot' },
+  { id: '8', urlFoto: storie10, nome: 'Miles' },
+  { id: '9', urlFoto: storie11, nome: 'She Hulk' },
+  { id: '10', urlFoto: storie13, nome: 'Rocket' },
+  { id: '11', urlFoto: storie15, nome: 'Thor' },
+  { id: '12', urlFoto: storie16, nome: 'Viúva Negra' },
 ];
 
-const postData = [
+const dadosPostagens = [
   {
     id: '1',
-    header: { imageUri: storie1, nome: 'Baby Groot' },
-    content: { imageUri: require('../../Assets/iamgroot.png') },
-    footer: { likes: 123, comments: 37575, caption: "I'M GROOT!" },
+    cabecalho: { uriImagem: storie1, nome: 'Baby Groot' },
+    conteudo: { uriImagem: require('../../Assets/iamgroot.png') },
+    rodape: { curtidas: 123, comentarios: 37575, legenda: "EU SOU GROOT!" },
   },
   {
     id: '2',
-    header: { imageUri: storie7, nome: 'Spider Man' },
-    content: { imageUri: require('../../Assets/miranhamanos.png') },
-    footer: { likes: 456, comments: 56363, caption: 'Miranhas!' },
+    cabecalho: { uriImagem: storie7, nome: 'Homem-Aranha' },
+    conteudo: { uriImagem: require('../../Assets/miranhamanos.png') },
+    rodape: { curtidas: 456, comentarios: 56363, legenda: 'Miranhas!' },
   },
   {
     id: '3',
-    header: { imageUri: storie8, nome: 'Tony Stark' },
-    content: { imageUri: require('../../Assets/ironman.jpg') },
-    footer: { likes: 456, comments: 1343245, caption: 'TBT de um dia ai' },
+    cabecalho: { uriImagem: storie8, nome: 'Tony Stark' },
+    conteudo: { uriImagem: require('../../Assets/ironman.jpg') },
+    rodape: { curtidas: 456, comentarios: 1343245, legenda: 'TBT de um dia aí' },
   },
   {
     id: '4',
-    header: { imageUri: storie9, nome: 'Hulk' },
-    content: { imageUri: require('../../Assets/odeioescada.jpg') },
-    footer: { likes: 456, comments: 41314, caption: 'ODEIOOO ESCADAAAAA' },
+    cabecalho: { uriImagem: storie9, nome: 'Hulk' },
+    conteudo: { uriImagem: require('../../Assets/odeioescada.jpg') },
+    rodape: { curtidas: 456, comentarios: 41314, legenda: 'ODEIOOO ESCADAAAAA' },
   },
   {
     id: '5',
-    header: { imageUri: storie17, nome: 'Capitão America' },
-    content: { imageUri: require('../../Assets/avante.webp') },
-    footer: { likes: 456, comments: 1334, caption: 'Vingadores, Avante' },
+    cabecalho: { uriImagem: storie17, nome: 'Capitão América' },
+    conteudo: { uriImagem: require('../../Assets/avante.webp') },
+    rodape: { curtidas: 456, comentarios: 1334, legenda: 'Vingadores, Avante' },
   },
 ];
 
 export const Home = () => {
+  const [comentario, setComentario] = useState('');
+  const [postagensCurtidas, setPostagensCurtidas] = useState([]);
 
-  const [comment, setComment] = useState('');
-  const [likedPosts, setLikedPosts] = useState([]);
-
-  const handleCommentChange = (text) => {
-    setComment(text);
+  const handleMudancaComentario = (texto) => {
+    setComentario(texto);
   };
 
-  const handlePostComment = () => {
-    setComment('');
+  const handlePostarComentario = () => {
+    setComentario('');
   };
 
-  const handleToggleLike = (postId) => {
-    setLikedPosts((prevLikedPosts) => {
-      if (prevLikedPosts.includes(postId)) {
-        return prevLikedPosts.filter((id) => id !== postId);
+  const handleAlternarCurtida = (idPostagem) => {
+    setPostagensCurtidas((postagensCurtidasAnteriores) => {
+      if (postagensCurtidasAnteriores.includes(idPostagem)) {
+        return postagensCurtidasAnteriores.filter((id) => id !== idPostagem);
       } else {
-        return [...prevLikedPosts, postId];
+        return [...postagensCurtidasAnteriores, idPostagem];
       }
     });
   };
 
-  const isPostLiked = (postId) => likedPosts.includes(postId);
+  const postagemCurtida = (idPostagem) => postagensCurtidas.includes(idPostagem);
 
-  const renderStorieItem = ({ item }) => (
+  const renderizarItemHistoria = ({ item }) => (
     <View style={styles.storiesCard} key={item.id}>
-      <Image source={item.photoURL} style={styles.storiesCardImage} />
+      <Image source={item.urlFoto} style={styles.storiesCardImage} />
       <Text style={styles.storiesCardNome}>{item.nome}</Text>
     </View>
   );
 
-  const renderPostItem = ({ item }) => (
+  const renderizarItemPostagem = ({ item }) => (
     <>
       <View style={styles.content}>
         <View style={styles.contentHeader}>
-          <View style={styles.contentHeaderLeft}>
-            <Image style={styles.contentHeaderLeftImage} source={{ uri: item.header.imageUri }} />
-            <Text style={styles.contentHeaderLeftText}>{item.header.nome}</Text>
+          <View style={styles.contentHeaderEsquerda}>
+            <Image style={styles.contentHeaderEsquerdaImagem} source={{ uri: item.cabecalho.uriImagem }} />
+            <Text style={styles.contentHeaderEsquerdaTexto}>{item.cabecalho.nome}</Text>
           </View>
-          <View style={styles.contentHeaderPoints}>
+          <View style={styles.contentHeaderPontos}>
             {[1, 2, 3].map((_, index) => (
               <FontAwesome key={index} name="circle" size={4} color="white" />
             ))}
           </View>
         </View>
         <View style={styles.contentImage}>
-          <Image source={item.content.imageUri} style={styles.contentImage} />
+          <Image source={item.conteudo.uriImagem} style={styles.contentImage} />
         </View>
       </View>
 
       <View style={styles.contentFooter}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
-          <View style={styles.contentFooterLeft}>
-            <TouchableOpacity onPress={() => handleToggleLike(item.id)}>
-              <AntDesign name={isPostLiked(item.id) ? 'heart' : 'hearto'} size={24} color={isPostLiked(item.id) ? 'red' : 'white'} />
+          <View style={styles.contentFooterEsquerda}>
+            <TouchableOpacity onPress={() => handleAlternarCurtida(item.id)}>
+              <AntDesign name={postagemCurtida(item.id) ? 'heart' : 'hearto'} size={24} color={postagemCurtida(item.id) ? 'red' : 'white'} />
             </TouchableOpacity>
             <AntDesign name="message1" size={24} color="white" />
             <FontAwesome name="share" size={24} color="white" />
@@ -140,11 +139,11 @@ export const Home = () => {
         </View>
         <View style={{ gap: 8, marginTop: 12, paddingLeft: 5 }}>
           <View style={{ flexDirection: 'row', gap: 6 }}>
-            <Text style={{ color: '#fff', fontWeight: 'bold' }}>{item.header.nome}</Text>
-            <Text style={{ color: '#fff' }}>{item.footer.caption}</Text>
+            <Text style={{ color: '#fff', fontWeight: 'bold' }}>{item.cabecalho.nome}</Text>
+            <Text style={{ color: '#fff' }}>{item.rodape.legenda}</Text>
           </View>
           <Text style={{ color: '#fff', fontWeight: '700', fontSize: 11 }}>Ver tradução</Text>
-          <Text style={{ color: '#fff', fontWeight: '300' }}>Ver todos os {item.footer.comments} comentários</Text>
+          <Text style={{ color: '#fff', fontWeight: '300' }}>Ver todos os {item.rodape.comentarios} comentários</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <TextInput
               style={{
@@ -156,10 +155,10 @@ export const Home = () => {
                 underlineColorAndroid: 'transparent',
               }}
               placeholder="Adicione um comentário..."
-              value={comment}
-              onChangeText={handleCommentChange}
+              value={comentario}
+              onChangeText={handleMudancaComentario}
             />
-            <TouchableOpacity onPress={handlePostComment}>
+            <TouchableOpacity onPress={handlePostarComentario}>
               <Text style={{ color: 'blue', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#ccc', paddingBottom: 5, marginLeft: '0%' }}>
                 <Ionicons name="ios-send-sharp" size={20} color="white" />
               </Text>
@@ -170,22 +169,22 @@ export const Home = () => {
     </>
   );
 
-  const navigation = useNavigation();
-  
-  const handleNavigateToMensagem = () => {
-    navigation.navigate('Mensagem');
+  const navegacao = useNavigation();
+
+  const handleNavegarParaMensagem = () => {
+    navegacao.navigate('Mensagem');
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={{ color: 'white' }}>MARVELGRAM</Text>
-        <View style={styles.headerOptions}>
+        <View style={styles.headerOpcoes}>
           <TouchableOpacity>
             <AntDesign name="hearto" size={24} color="white" />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Feather name="message-circle" size={24} color="white" onPress={handleNavigateToMensagem} />
+            <Feather name="message-circle" size={24} color="white" onPress={handleNavegarParaMensagem} />
           </TouchableOpacity>
         </View>
       </View>
@@ -194,17 +193,17 @@ export const Home = () => {
         <View style={styles.stories}>
           <FlatList
             horizontal={true}
-            data={storieData}
+            data={dadosHistorias}
             keyExtractor={(item) => item.id}
             showsHorizontalScrollIndicator={false}
-            renderItem={renderStorieItem}
+            renderItem={renderizarItemHistoria}
           />
         </View>
 
         <FlatList
-          data={postData}
+          data={dadosPostagens}
           keyExtractor={(item) => item.id}
-          renderItem={renderPostItem}
+          renderItem={renderizarItemPostagem}
         />
       </ScrollView>
     </SafeAreaView>
