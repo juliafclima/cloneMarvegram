@@ -10,6 +10,10 @@ export const Manutencao = () => {
     navigation.navigate('Home');
   };
 
+  const handleNavigateToMensagem = () => {
+    navigation.navigate('Mensagem');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -21,7 +25,7 @@ export const Manutencao = () => {
           </TouchableOpacity>
 
           <TouchableOpacity>
-            <Feather name="message-circle" size={24} color="white" />
+            <Feather name="message-circle" size={24} color="white" onPress={handleNavigateToMensagem} />
           </TouchableOpacity>
         </View>
       </View>
