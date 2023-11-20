@@ -24,6 +24,7 @@ import storie11 from '../../Assets/mulher-hulk.png';
 import storie13 from '../../Assets/rocket.png';
 import storie15 from '../../Assets/thor.png';
 import storie16 from '../../Assets/viuva-negra.png';
+import storie17 from '../../Assets/avante.webp';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -66,6 +67,12 @@ const postData = [
     header: { imageUri: storie9, nome: 'Hulk' },
     content: { imageUri: require('../../Assets/odeioescada.jpg') },
     footer: { likes: 456, comments: 41314, caption: 'ODEIOOO ESCADAAAAA' },
+  },
+  {
+    id: '5',
+    header: { imageUri: storie17, nome: 'Capitão America' },
+    content: { imageUri: require('../../Assets/avante.webp') },
+    footer: { likes: 456, comments: 1334, caption: 'Vingadores, Avante' },
   },
 ];
 
