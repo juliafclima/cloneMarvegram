@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   FlatList,
   Image,
@@ -6,13 +7,9 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity
-} from "react-native";
-
-import { useState } from "react";
-
+  TouchableOpacity,
+} from 'react-native';
 import { AntDesign, Feather, FontAwesome } from '@expo/vector-icons';
-
 import { styles } from '../Home/style';
 
 import storie1 from '../../Assets/baby-groot.png';
@@ -28,71 +25,43 @@ import storie13 from '../../Assets/rocket.png';
 import storie15 from '../../Assets/thor.png';
 import storie16 from '../../Assets/viuva-negra.png';
 
-const DATA = [
+const storieData = [
+  { id: '1', photoURL: storie2, nome: 'Cap Marvel' },
+  { id: '2', photoURL: storie3, nome: 'Cosmo' },
+  { id: '3', photoURL: storie5, nome: 'Dr Estranho' },
+  { id: '4', photoURL: storie7, nome: 'Miranha' },
+  { id: '5', photoURL: storie8, nome: 'Tony' },
+  { id: '6', photoURL: storie9, nome: 'Hulk' },
+  { id: '7', photoURL: storie1, nome: 'Groot' },
+  { id: '8', photoURL: storie10, nome: 'Miles' },
+  { id: '9', photoURL: storie11, nome: 'She Hulk' },
+  { id: '10', photoURL: storie13, nome: 'Rocket' },
+  { id: '11', photoURL: storie15, nome: 'Thor' },
+  { id: '12', photoURL: storie16, nome: 'Viúva Negra' },
+];
+
+const postData = [
   {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie2,
-    nome: 'Cap Marvel',
+    id: '1',
+    header: { imageUri: storie1, nome: 'Baby Groot' },
+    content: { imageUri: require('../../Assets/iamgroot.png') },
+    footer: { likes: 123, comments: 37575, caption: "I'M GROOT!" },
   },
   {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie3,
-    nome: 'Cosmo',
+    id: '2',
+    header: { imageUri: storie7, nome: 'Spider Man' },
+    content: { imageUri: require('../../Assets/miranhamanos.png') },
+    footer: { likes: 456, comments: 56363, caption: 'Miranhas!' },
   },
   {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie5,
-    nome: 'Dr Estranho',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie7,
-    nome: 'Miranha',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie8,
-    nome: 'Tony',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie9,
-    nome: 'Hulk',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie1,
-    nome: 'Groot',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie10,
-    nome: 'Miles',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie11,
-    nome: 'She Hulk',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie13,
-    nome: 'Rocket',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie15,
-    nome: 'Thor',
-  },
-  {
-    id: Math.random().toString(36).substring(2, 27),
-    photoURL: storie16,
-    nome: 'Viúva Negra',
+    id: '3',
+    header: { imageUri: storie8, nome: 'Tony Stark' },
+    content: { imageUri: require('../../Assets/ironman.jpg') },
+    footer: { likes: 456, comments: 154352, caption: 'TBT de um dia ai' },
   },
 ];
 
-export function Home({ navigation }) {
-
+export const Home = ({ navigation }) => {
   const [comment, setComment] = useState('');
 
   const handleCommentChange = (text) => {
@@ -100,165 +69,106 @@ export function Home({ navigation }) {
   };
 
   const handlePostComment = () => {
-    console.log('Comentário postado:', comment);
     setComment('');
   };
+
+  const renderStorieItem = ({ item }) => (
+    <View style={styles.storiesCard} key={item.id}>
+      <Image source={item.photoURL} style={styles.storiesCardImage} />
+      <Text style={styles.storiesCardNome}>{item.nome}</Text>
+    </View>
+  );
+
+  const renderPostItem = ({ item }) => (
+    <>
+      <View style={styles.content}>
+        <View style={styles.contentHeader}>
+          <View style={styles.contentHeaderLeft}>
+            <Image style={styles.contentHeaderLeftImage} source={{ uri: item.header.imageUri }} />
+            <Text style={styles.contentHeaderLeftText}>{item.header.nome}</Text>
+          </View>
+          <View style={styles.contentHeaderPoints}>
+            {[1, 2, 3].map((_, index) => (
+              <FontAwesome key={index} name="circle" size={4} color="white" />
+            ))}
+          </View>
+        </View>
+        <View style={styles.contentImage}>
+          <Image source={item.content.imageUri} style={styles.contentImage} />
+        </View>
+      </View>
+
+      <View style={styles.contentFooter}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
+          <View style={styles.contentFooterLeft}>
+            <AntDesign name="hearto" size={24} color="white" />
+            <AntDesign name="message1" size={24} color="white" />
+            <FontAwesome name="share" size={24} color="white" />
+          </View>
+          <Feather name="bookmark" size={24} color="white" />
+        </View>
+        <View style={{ gap: 8, marginTop: 12, paddingLeft: 5 }}>
+          <View style={{ flexDirection: 'row', gap: 6 }}>
+            <Text style={{ color: '#fff', fontWeight: 'bold' }}>{item.header.nome}</Text>
+            <Text style={{ color: '#fff' }}>{item.footer.caption}</Text>
+          </View>
+          <Text style={{ color: '#fff', fontWeight: '700', fontSize: 11 }}>Ver tradução</Text>
+          <Text style={{ color: '#fff', fontWeight: '300' }}>Ver todos os {item.footer.comments} comentários</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TextInput
+              style={{
+                flex: 1,
+                borderBottomWidth: 1,
+                borderBottomColor: '#ccc',
+                paddingBottom: 8,
+                color: 'white',
+                underlineColorAndroid: 'transparent',
+              }}
+              placeholder="Adicione um comentário..."
+              value={comment}
+              onChangeText={handleCommentChange}
+            />
+            <TouchableOpacity onPress={handlePostComment}>
+              <Text style={{ color: 'blue', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#ccc', paddingBottom: 6, marginLeft: '-45%' }}>
+                <FontAwesome name="smile-o" size={20} color="white" />
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={{ color: 'white' }}>MARVELGRAM</Text>
         <View style={styles.headerOptions}>
-          <TouchableOpacity onPress={() => navigation.navigate("Notificacao")}>
+          <TouchableOpacity>
             <AntDesign name="hearto" size={24} color="white" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Mensagem")}>
+          <TouchableOpacity>
             <Feather name="message-circle" size={24} color="white" />
           </TouchableOpacity>
         </View>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}
-        style={{ width: "100%" }}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%' }}>
         <View style={styles.stories}>
           <FlatList
             horizontal={true}
-            data={DATA}
+            data={storieData}
             keyExtractor={(item) => item.id}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <View style={styles.storiesCard} key={item.id}>
-                <Image
-                  source={item.photoURL}
-                  style={styles.storiesCardImage}
-                />
-                <Text style={styles.storiesCardNome}>{item.nome}</Text>
-              </View>
-            )}
+            renderItem={renderStorieItem}
           />
         </View>
 
-        <View style={styles.content}>
-          <View style={styles.contentHeader}>
-            <View style={styles.contentHeaderLeft}>
-              <Image
-                style={styles.contentHeaderLeftImage}
-                source={{ uri: storie1 }}
-              />
-              <Text style={styles.contentHeaderLeftText}>Baby Groot</Text>
-            </View>
-            <View style={styles.contentHeaderPoints}>
-              <FontAwesome name="circle" size={4} color="white" />
-              <FontAwesome name="circle" size={4} color="white" />
-              <FontAwesome name="circle" size={4} color="white" />
-            </View>
-          </View>
-          <View style={styles.contentImage}>
-            <Image
-              source={require('../../Assets/iamgroot.png')}
-              style={styles.contentImage}
-            />
-          </View>
-        </View>
-
-        <View style={styles.contentFooter}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
-            <View style={styles.contentFooterLeft}>
-              <AntDesign name="hearto" size={24} color="white" />
-              <AntDesign name="message1" size={24} color="white" />
-              <FontAwesome name="share" size={24} color="white" />
-            </View>
-            <Feather name="bookmark" size={24} color="white" />
-          </View>
-          <View style={{ gap: 8, marginTop: 12, paddingLeft: 5 }}>
-            <View style={{ flexDirection: 'row', gap: 6 }}>
-              <Text style={{ color: '#fff', fontWeight: 'bold' }}>Baby Groot</Text>
-              <Text style={{ color: '#fff' }}>I'M GROOT!</Text>
-            </View>
-            <Text style={{ color: '#fff', fontWeight: "700", fontSize: 11 }}>Ver tradução</Text>
-            <Text style={{ color: '#fff', fontWeight: '300' }}>Ver todos os 3 comentários</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <TextInput
-                style={{
-                  flex: 1,
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#ccc',
-                  paddingBottom: 8,
-                  color: 'white',
-                  underlineColorAndroid: 'transparent',
-                }}
-                placeholder="Adicione um comentário..."
-                value={comment}
-                onChangeText={handleCommentChange}
-              />
-              <TouchableOpacity onPress={handlePostComment}>
-                <Text style={{ color: 'blue', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#ccc', paddingBottom: 6, marginLeft: '-45%' }}><FontAwesome name="smile-o" size={20} color="white" /></Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-
-        {/* SEGUNDO POST */}
-
-        <View style={styles.content}>
-          <View style={styles.contentHeader}>
-            <View style={styles.contentHeaderLeft}>
-              <Image
-                style={styles.contentHeaderLeftImage}
-                source={{ uri: storie7 }}
-              />
-              <Text style={styles.contentHeaderLeftText}>Spider Man</Text>
-            </View>
-            <View style={styles.contentHeaderPoints}>
-              <FontAwesome name="circle" size={4} color="white" />
-              <FontAwesome name="circle" size={4} color="white" />
-              <FontAwesome name="circle" size={4} color="white" />
-            </View>
-          </View>
-          <View style={styles.contentImage}>
-            <Image
-              source={require('../../Assets/miranhamanos.png')}
-              style={styles.contentImage}
-            />
-          </View>
-        </View>
-
-        <View style={styles.contentFooter}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
-            <View style={styles.contentFooterLeft}>
-              <AntDesign name="hearto" size={24} color="white" />
-              <AntDesign name="message1" size={24} color="white" />
-              <FontAwesome name="share" size={24} color="white" />
-            </View>
-            <Feather name="bookmark" size={24} color="white" />
-          </View>
-          <View style={{ gap: 8, marginTop: 12, paddingLeft: 5 }}>
-            <View style={{ flexDirection: 'row', gap: 6 }}>
-              <Text style={{ color: '#fff', fontWeight: 'bold' }}>Spider Man</Text>
-              <Text style={{ color: '#fff' }}>Miranhas!</Text>
-            </View>
-            <Text style={{ color: '#fff', fontWeight: "700", fontSize: 11 }}>Ver tradução</Text>
-            <Text style={{ color: '#fff', fontWeight: '300' }}>Ver todos os 5 comentários</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <TextInput
-                style={{
-                  flex: 1,
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#ccc',
-                  paddingBottom: 8,
-                  color: 'white',
-                  underlineColorAndroid: 'transparent',
-                }}
-                placeholder="Adicione um comentário..."
-                value={comment}
-                onChangeText={handleCommentChange}
-              />
-              <TouchableOpacity onPress={handlePostComment}>
-                <Text style={{ color: 'blue', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#ccc', paddingBottom: 6, marginLeft: '-45%' }}><FontAwesome name="smile-o" size={20} color="white" /></Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        <FlatList
+          data={postData}
+          keyExtractor={(item) => item.id}
+          renderItem={renderPostItem}
+        />
       </ScrollView>
     </SafeAreaView>
   );

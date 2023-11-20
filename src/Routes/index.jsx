@@ -1,14 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { MaterialIcons, Entypo, Ionicons, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons, Entypo, Ionicons, AntDesign, Foundation } from '@expo/vector-icons';
 
 import { Home } from '../Screens/Home';
-import { Explore } from "../Screens/Explore";
-import { NovaPublicacao } from "../Screens/NovaPublicacao";
-import { Perfil } from "../Screens/Perfil";
-import { Mensagem } from "../Screens/Mensagem";
-import { Notificacao } from "../Screens/Notificacao";
+import { Manutencao } from "../Screens/Manutencao";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,31 +30,25 @@ export const Routes = () => {
           tabBarIcon: ({ color }) => (
             <Entypo name="magnifying-glass" size={24} color="white" />
           )
-        }} name="Explore" component={Explore} />
+        }} name="Explore" component={Manutencao} />
 
         <Tab.Screen options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name="pluscircleo" size={30} color="white" />
           )
-        }} name="NovaPublicacao" component={NovaPublicacao} />
+        }} name="NovaPublicacao" component={Manutencao} />
 
         <Tab.Screen options={{
           tabBarIcon: ({ color }) => (
-            <AntDesign name="message1" size={30} color="white" />
+            <Foundation name="play-video" size={30} color="white" />
           )
-        }} name="Mensagem" component={Mensagem} />
-
-        <Tab.Screen options={{
-          tabBarIcon: ({ color }) => (
-            <AntDesign name="hearto" size={24} color="white" />
-          )
-        }} name="Notificacao" component={Notificacao} />
+        }} name="Reels" component={Manutencao} />
 
         <Tab.Screen options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="md-person-circle-outline" size={30} color="white" />
           )
-        }} name="Perfil" component={Perfil} />
+        }} name="Perfil" component={Manutencao} />
       </Tab.Navigator>
     </NavigationContainer>
   );
