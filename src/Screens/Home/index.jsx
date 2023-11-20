@@ -9,7 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import { AntDesign, Feather, FontAwesome } from '@expo/vector-icons';
+import { AntDesign, Feather, FontAwesome, Ionicons } from '@expo/vector-icons';
 import { styles } from '../Home/style';
 
 import storie1 from '../../Assets/baby-groot.png';
@@ -24,6 +24,8 @@ import storie11 from '../../Assets/mulher-hulk.png';
 import storie13 from '../../Assets/rocket.png';
 import storie15 from '../../Assets/thor.png';
 import storie16 from '../../Assets/viuva-negra.png';
+
+import { useNavigation } from '@react-navigation/native';
 
 const storieData = [
   { id: '1', photoURL: storie2, nome: 'Cap Marvel' },
@@ -57,12 +59,20 @@ const postData = [
     id: '3',
     header: { imageUri: storie8, nome: 'Tony Stark' },
     content: { imageUri: require('../../Assets/ironman.jpg') },
-    footer: { likes: 456, comments: 154352, caption: 'TBT de um dia ai' },
+    footer: { likes: 456, comments: 1343245, caption: 'TBT de um dia ai' },
+  },
+  {
+    id: '4',
+    header: { imageUri: storie9, nome: 'Hulk' },
+    content: { imageUri: require('../../Assets/odeioescada.jpg') },
+    footer: { likes: 456, comments: 41314, caption: 'ODEIOOO ESCADAAAAA' },
   },
 ];
 
-export const Home = ({ navigation }) => {
+export const Home = () => {
+
   const [comment, setComment] = useState('');
+  const [likedPosts, setLikedPosts] = useState([]);
 
   const handleCommentChange = (text) => {
     setComment(text);
@@ -71,6 +81,18 @@ export const Home = ({ navigation }) => {
   const handlePostComment = () => {
     setComment('');
   };
+
+  const handleToggleLike = (postId) => {
+    setLikedPosts((prevLikedPosts) => {
+      if (prevLikedPosts.includes(postId)) {
+        return prevLikedPosts.filter((id) => id !== postId);
+      } else {
+        return [...prevLikedPosts, postId];
+      }
+    });
+  };
+
+  const isPostLiked = (postId) => likedPosts.includes(postId);
 
   const renderStorieItem = ({ item }) => (
     <View style={styles.storiesCard} key={item.id}>
@@ -101,7 +123,9 @@ export const Home = ({ navigation }) => {
       <View style={styles.contentFooter}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
           <View style={styles.contentFooterLeft}>
-            <AntDesign name="hearto" size={24} color="white" />
+            <TouchableOpacity onPress={() => handleToggleLike(item.id)}>
+              <AntDesign name={isPostLiked(item.id) ? 'heart' : 'hearto'} size={24} color={isPostLiked(item.id) ? 'red' : 'white'} />
+            </TouchableOpacity>
             <AntDesign name="message1" size={24} color="white" />
             <FontAwesome name="share" size={24} color="white" />
           </View>
@@ -129,8 +153,8 @@ export const Home = ({ navigation }) => {
               onChangeText={handleCommentChange}
             />
             <TouchableOpacity onPress={handlePostComment}>
-              <Text style={{ color: 'blue', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#ccc', paddingBottom: 6, marginLeft: '-45%' }}>
-                <FontAwesome name="smile-o" size={20} color="white" />
+              <Text style={{ color: 'blue', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#ccc', paddingBottom: 5, marginLeft: '0%' }}>
+                <Ionicons name="ios-send-sharp" size={20} color="white" />
               </Text>
             </TouchableOpacity>
           </View>
@@ -138,6 +162,12 @@ export const Home = ({ navigation }) => {
       </View>
     </>
   );
+
+  const navigation = useNavigation();
+  
+  const handleNavigateToMensagem = () => {
+    navigation.navigate('Mensagem');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -148,7 +178,7 @@ export const Home = ({ navigation }) => {
             <AntDesign name="hearto" size={24} color="white" />
           </TouchableOpacity>
           <TouchableOpacity>
-            <Feather name="message-circle" size={24} color="white" />
+            <Feather name="message-circle" size={24} color="white" onPress={handleNavigateToMensagem} />
           </TouchableOpacity>
         </View>
       </View>
@@ -172,4 +202,4 @@ export const Home = ({ navigation }) => {
       </ScrollView>
     </SafeAreaView>
   );
-}
+};

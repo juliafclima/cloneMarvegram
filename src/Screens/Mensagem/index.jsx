@@ -7,6 +7,7 @@ export const Mensagem = () => {
   const [messages, setMessages] = useState([
     { id: '1', text: 'Oi!', sender: 'user' },
     { id: '2', text: 'Olá! Como você está?', sender: 'other' },
+    { id: '3', text: 'Ja assistiu The Marvels?', sender: 'other' }
   ]);
 
   const [newMessage, setNewMessage] = useState('');
