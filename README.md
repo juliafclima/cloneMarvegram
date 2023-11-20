@@ -44,12 +44,14 @@ usuário, como curtir e comentar.
 
 - Mensagem
 
+<img src="./prints/segunda_rota1.png" alt="Mensagem" width="200"/>
 <img src="./prints/extra_envio_mensagem.png" alt="Mensagem" width="200"/>
 O código gerencia o estado do componente por meio do Hook useState. O estado messages armazena uma lista de mensagens, enquanto newMessage guarda o conteúdo da nova mensagem inserida pelo usuário. A função handleSendMessage adiciona uma nova mensagem à lista após verificar se a mensagem não está vazia. A interface exibe as mensagens em uma FlatList. A interação do usuário ocorre por meio de um campo de entrada de texto e um botão "Enviar".
 
 
 - Pagina de manutenção
 
+<img src="./prints/tela_manutencao1.png" alt="Mensagem" width="200"/>
 <img src="./prints/tela_manutencao.png" alt="Mensagem" width="200"/>
 A interface consiste em um cabeçalho exibindo o nome do aplicativo e ícones de opções (coração e mensagem), indicando funcionalidades indisponíveis durante a manutenção. Além disso, há um botão "Voltar para Home", que, quando pressionado, direciona o usuário de volta à tela principal ("Home") por meio do React Navigation.
 
