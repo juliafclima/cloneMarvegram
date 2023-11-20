@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-export const estilos = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fafafa',
   },
-  mensagemUsuario: {
+  userMessage: {
     alignSelf: 'flex-end',
     backgroundColor: '#3498db',
     borderRadius: 8,
@@ -13,7 +13,7 @@ export const estilos = StyleSheet.create({
     padding: 10,
     maxWidth: '70%',
   },
-  mensagemOutro: {
+  otherMessage: {
     alignSelf: 'flex-start',
     backgroundColor: '#5ea8da',
     borderRadius: 8,
@@ -21,10 +21,10 @@ export const estilos = StyleSheet.create({
     padding: 10,
     maxWidth: '70%',
   },
-  textoMensagem: {
+  messageText: {
     color: 'white',
   },
-  containerInput: {
+  inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 8,
@@ -38,12 +38,12 @@ export const estilos = StyleSheet.create({
     paddingVertical: 8,
     marginRight: 8,
   },
-  botaoEnviar: {
+  sendButton: {
     backgroundColor: '#2ecc71',
     borderRadius: 20,
     padding: 10,
   },
-  textoBotaoEnviar: {
+  sendButtonText: {
     color: 'white',
     fontWeight: 'bold',
   },

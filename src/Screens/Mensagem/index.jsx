@@ -1,47 +1,48 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native';
 
-import { estilos } from './estilo.jsx';
+import {styles} from './style.jsx'
 
 export const Mensagem = () => {
-  const [mensagens, setMensagens] = useState([
-    { id: '1', texto: 'Oi!', remetente: 'usuário' },
-    { id: '2', texto: 'Olá! Como você está?', remetente: 'outro' },
-    { id: '3', texto: 'Já assistiu The Marvels?', remetente: 'outro' }
+  const [messages, setMessages] = useState([
+    { id: '1', text: 'Oi!', sender: 'user' },
+    { id: '2', text: 'Olá! Como você está?', sender: 'other' },
+    { id: '3', text: 'Ja assistiu The Marvels?', sender: 'other' }
   ]);
 
-  const [novaMensagem, setNovaMensagem] = useState('');
+  const [newMessage, setNewMessage] = useState('');
 
-  const handleEnviarMensagem = () => {
-    if (novaMensagem.trim() === '') return;
+  const handleSendMessage = () => {
+    if (newMessage.trim() === '') return;
 
-    const novaMsg = { id: String(mensagens.length + 1), texto: novaMensagem, remetente: 'usuário' };
-    setMensagens([...mensagens, novaMsg]);
-    setNovaMensagem('');
+    const newMsg = { id: String(messages.length + 1), text: newMessage, sender: 'user' };
+    setMessages([...messages, newMsg]);
+    setNewMessage('');
   };
 
   return (
-    <View style={estilos.container}>
+    <View style={styles.container}>
       <FlatList
-        data={mensagens}
+        data={messages}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={item.remetente === 'usuário' ? estilos.mensagemUsuario : estilos.mensagemOutro}>
-            <Text style={estilos.textoMensagem}>{item.texto}</Text>
+          <View style={item.sender === 'user' ? styles.userMessage : styles.otherMessage}>
+            <Text style={styles.messageText}>{item.text}</Text>
           </View>
         )}
       />
-      <View style={estilos.containerInput}>
+      <View style={styles.inputContainer}>
         <TextInput
-          style={estilos.input}
+          style={styles.input}
           placeholder="Digite sua mensagem..."
-          value={novaMensagem}
-          onChangeText={(texto) => setNovaMensagem(texto)}
+          value={newMessage}
+          onChangeText={(text) => setNewMessage(text)}
         />
-        <TouchableOpacity style={estilos.botaoEnviar} onPress={handleEnviarMensagem}>
-          <Text style={estilos.textoBotaoEnviar}>Enviar</Text>
+        <TouchableOpacity style={styles.sendButton} onPress={handleSendMessage}>
+          <Text style={styles.sendButtonText}>Enviar</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
+
