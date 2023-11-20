@@ -27,6 +27,10 @@ Extra: Salvar a informação do input no dispositivo ao clicar no botão!
 
 ## Screens
 
+![GIF Marvelgram](./prints/gif.gif)
+
+
+
 ## Ferramentas e tecnologias
 - [Git](https://git-scm.com/) <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="30" height="30"/>
 
