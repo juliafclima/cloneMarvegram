@@ -4,10 +4,6 @@
 <p align="center">Trabalho Final Individual da Matéria de DESENVOLVIMENTO DE APLICATIVO MOBILE ministrada pelo professor João Felipe da Silva Braçanca para a turma 13 - Residência SERRATEC/2023.2
 </p>
 
-<p align="center">
-<img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
-</p>
-
 ## Instalação e execução do projeto
 <p>-Git clone: https://github.com/juliafclima/cloneMarvegram.git</p>
 
@@ -26,6 +22,36 @@ Requisitos:
 Extra: Salvar a informação do input no dispositivo ao clicar no botão!
 
 ## Screens
+
+Tela clonada: Instagram
+
+<img src="./prints/pagina_clonada.jpg" alt="Mensagem" width="200"/>
+
+
+GIF Marvelgram
+
+![GIF Marvelgram](./prints/gif.gif)
+
+- Home - tela principal do aplicativo
+   
+<img src="./prints/pagina_home.png" alt="Mensagem" width="200"/>
+A página exibe histórias de personagens da Marvel, representadas por imagens importadas. O estado do componente é gerenciado pelo Hook useState, abrangendo tanto os comentários quanto as postagens curtidas. Além disso, a página inclui a funcionalidade de navegação para uma tela de mensagens.
+
+- Posibilidade de dar Like na publicação e utilizar o input do comentário
+<img src="./prints/like_comentario.png" alt="Mensagem" width="200"/>
+A interface do usuário é projetada de forma a permitir a visualização das histórias e postagens, com elementos interativos para interações do     
+usuário, como curtir e comentar.
+
+- Mensagem
+
+<img src="./prints/extra_envio_mensagem.png" alt="Mensagem" width="200"/>
+O código gerencia o estado do componente por meio do Hook useState. O estado messages armazena uma lista de mensagens, enquanto newMessage guarda o conteúdo da nova mensagem inserida pelo usuário. A função handleSendMessage adiciona uma nova mensagem à lista após verificar se a mensagem não está vazia. A interface exibe as mensagens em uma FlatList. A interação do usuário ocorre por meio de um campo de entrada de texto e um botão "Enviar".
+
+
+- Pagina de manutenção
+
+<img src="./prints/tela_manutencao.png" alt="Mensagem" width="200"/>
+A interface consiste em um cabeçalho exibindo o nome do aplicativo e ícones de opções (coração e mensagem), indicando funcionalidades indisponíveis durante a manutenção. Além disso, há um botão "Voltar para Home", que, quando pressionado, direciona o usuário de volta à tela principal ("Home") por meio do React Navigation.
 
 ## Ferramentas e tecnologias
 - [Git](https://git-scm.com/) <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="30" height="30"/>
